@@ -1,6 +1,6 @@
 <template>
-  <div class="loader">
-       <slot></slot>
+    <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
     </div>
 </template>
 
@@ -11,8 +11,5 @@ export default {
 </script>
 
 <style scoped>
-    .loader {
-        color: teal;
-        font-size: 2rem;
-    }
+
 </style>

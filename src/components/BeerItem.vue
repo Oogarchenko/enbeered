@@ -1,60 +1,48 @@
 <template>
-    <li class="beer">
-        <div class="beer__text">
-            <h3>{{ beer.name }}</h3>
-            <p>{{ beer.style }}</p>
-            <ul class="beer__characteristics">
-                <li>
-                    Бренд: {{ beer.brand }}
-                </li>
-                <li>
-                    Алкоголь: {{ beer.alcohol }}
-                </li>
-                <li>
-                    Экстракт: {{ beer.blg }}
-                </li>
-                <li>
-                    Хмель: {{ beer.hop }}
-                </li>
-                <li>
-                    Солод: {{ beer.malts }}
-                </li>
-                <li>
-                    Дрожжи: {{ beer.yeast }}
-                </li>
+    <div class="card beer text-center">
+        <h5 class="card-header">{{ beer.name }}</h5>
+        <div class="card-body">
+            <h5 class="card-title">{{ beer.style }}</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Бренд: {{ beer.brand }}</li>
+                <li class="list-group-item">Алкоголь: {{ beer.alcohol }}</li>
+                <li class="list-group-item">Экстракт: {{ beer.blg }}</li>
+                <li class="list-group-item">Хмель: {{ beer.hop }}</li>
+                <li class="list-group-item">Солод: {{ beer.malts }}</li>
+                <li class="list-group-item">Дрожжи: {{ beer.yeast }}</li>
             </ul>
+            <my-button
+                type="button" 
+                class="btn btn-warning" 
+                @click="$emit('remove', beer), $emit('toggle-flag')"
+            >
+                Не понравилось
+            </my-button>          
         </div>
-        <h4>{{ $store.state.beers }}</h4>
-        <my-button 
-            class="btn-delete"
-            @click="$emit('remove', beer)"
-        >
-            Не понравилось
-        </my-button>
-    </li>
+    </div>
 </template>
 
 <script>
+import MyButton from '@/components/UI/MyButton.vue';
 export default {
-    emits: ['remove'],
+    components: { 
+        MyButton
+    },
+    emits: ['remove', 'toggle-flag'],   
     props: {
         beer: {
             type: Object,
             required: true,
-        }
+        },
     }
 }
 </script>
 
 <style scoped>
     .beer {
-        list-style-type: none;
-        padding: 20px;
-        border: 2px solid teal;
-        margin: 1rem 1rem;
-        border-radius: 2em;
+        width: inherit;
+        margin: 0 auto;
     }
-
     .beer__characteristics {
         list-style: none;
     }

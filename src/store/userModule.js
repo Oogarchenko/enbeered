@@ -14,9 +14,6 @@ export const userModule = {
         setIsUserLoading (state, bool) {
             state.isUserLoading = bool;
         },
-        setIsUserOldEnough (state, bool) {
-            state.isUserOldEnough = bool;
-        },
         setUserAge (state, number) {
             state.userAge = number;
         }
@@ -28,7 +25,6 @@ export const userModule = {
                 const response = await axios.get('https://random-data-api.com/api/users/random_user');
                 commit('setUser', response.data);
                 commit('setUserAge', new Date().getFullYear() - new Date(state.user.date_of_birth).getFullYear());
-                commit('setIsUserOldEnough', state.userAge > 18);
             } catch (e) {
                 alert(e.message);
             } finally {

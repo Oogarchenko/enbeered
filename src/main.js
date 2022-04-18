@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { createApp } from 'vue';
 import App from './App';
 import components from '@/components/UI';
@@ -13,4 +15,6 @@ components.forEach(component => {
 app
     .use(router)
     .use(store)
-    .mount('#app')
+    .mount('#app');
+
+import 'bootstrap/dist/js/bootstrap.js';

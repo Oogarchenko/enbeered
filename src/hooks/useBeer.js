@@ -20,10 +20,10 @@ export default function useBeer () {
 
     const removeBeer = (beer) => {
         return beers.value = beers.value.filter(b => b.id !== beer.id);
-    }
+    };
 
     onMounted(fetchBeer)
     return {
         beers, beer, isBeerLoading, fetchBeer, removeBeer
-    }
+    };
 }

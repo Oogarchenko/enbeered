@@ -1,8 +1,14 @@
 <template>
-  <div class="user__card">
-      <img :src="user.avatar" alt="" class="avatar" width="300" height="300">
-      <h4>{{ user.first_name}} {{ user.last_name }}</h4>
-  </div>
+    <div class="card user__card" >
+        <img :src="user.avatar" class="card-img-top" alt="user avatar" width='300' height='300'>
+        <div class="card-body mt-5">
+            <h5 class="card-title text-center">{{ user.first_name}} {{ user.last_name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Возраст: {{ new Date().getFullYear() - new Date(user.date_of_birth).getFullYear() }}</li>
+            <li class="list-group-item">Должность: {{ user.employment?.title }}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -11,14 +17,11 @@ export default {
         user: { 
             type: Object,
             required: true
-        }
+        },
     }
 }
 </script>
 
 <style scoped>
-    .user__card {
-        width: 100px;
-        min-height: 200px;
-    }
+
 </style>

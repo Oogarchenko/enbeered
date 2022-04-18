@@ -1,5 +1,11 @@
 <template>
-  <input :value="modelValue" @input="updateInput" class="input" type="text">
+    <input 
+        :value="modelValue" 
+        @input="updateInput"
+        type="text" 
+        aria-label="Beer name" 
+        class="form-control" 
+    >
 </template>
 
 <script>

@@ -8,8 +8,8 @@ export const beerModule = {
         selectedSort: '',
         searchQuery: '',
         sortOptions: [
-            {value: 'brand', name: 'По бренду'},
-            {value: 'style', name: 'По виду'},
+            {value: 'brand', name: 'Сортировать по бренду'},
+            {value: 'style', name: 'Сортировать по виду'},
         ],
     }),
     getters: {

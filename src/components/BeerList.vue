@@ -1,21 +1,22 @@
 <template>
-    <ul class="beers" v-show="beers.length > 0">
+    <div class="beers container container-fluid" v-show="beers.length > 0">
         <transition-group name="beers-list">
             <beer-item
+                class="beer"
                 v-for="beer in beers"
                 :beer="beer"
                 :key="beer.id"
                 @remove="$emit('remove', beer)"
+                @toggle-flag="$emit ('toggle-flag')"
             />
         </transition-group>
-    </ul>
-    <h2 v-show="beers.length === 0">Может пивка?</h2>
+    </div>
 </template>
 
 <script>
 import BeerItem from '@/components/BeerItem';
 export default {
-    emits: ['remove'],
+    emits: ['remove', 'toggle-flag'],
     components: { BeerItem },
     props: { 
         beers: { 
@@ -30,9 +31,7 @@ export default {
     .beers {
         display: flex;
         flex-wrap: wrap;
-        list-style: none;
-        margin-top: 5rem;
-        width: 40%;
+        margin-top: 3rem;
     }
     .beers-list-item {
         display: inline-block;
@@ -48,6 +47,10 @@ export default {
         transform: translateX(30px);
     }
     .beers-list-move {
-  transition: transform 0.3s ease;
-}
+        transition: transform 0.3s ease;
+    }
+    .beer {
+        width: 23rem;
+        margin-top: 1.5rem;
+    }
 </style>

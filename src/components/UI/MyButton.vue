@@ -1,7 +1,5 @@
 <template>
-  <button class="btn">
-      <slot></slot>
-  </button>
+  <a href="#" @click.prevent class="btn btn-warning"><slot></slot></a>
 </template>
 
 <script>
@@ -12,11 +10,7 @@ export default {
 
 <style scoped>
     .btn {
-        min-width: 80px;
-        min-height: 40px;
-        background-color: gold;
-        border: none;
-        color: white;
+        color: black;
         font-weight: bold;
         border-radius: 0.5em;
         margin: 0.5rem 1rem;

@@ -1,6 +1,6 @@
 <template>
-    <select v-model="modelValue" @change="changeOption">
-        <option disabled value="">Выбери из списка</option>
+    <select class="form-select" aria-label="Beer sorting" v-model="modelValue" @change="changeOption">
+        <option disabled value="">Выбрать тип сортировки</option>
         <option 
             v-for="option in options" 
             :key="option.value" 
@@ -16,7 +16,7 @@ export default {
     name: 'my-select',
     props: {
         modelValue: {
-            type: String //строка с названием свойства по которому будем сортировать
+            type: String 
         },
         options: {
             type: Array,

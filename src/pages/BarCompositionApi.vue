@@ -1,40 +1,56 @@
 <template>
-  <div class="wrapper">
-        <my-loader v-if="isUserLoading">Кто это тут у нас...?</my-loader>
-        <h1 v-else-if="!isUserLoading">Какие люди(роботы?)! {{ user.first_name }}!</h1>        
-        <user-profile
-            :user="user"
-        />
-        <my-dialogue v-model:show="dialogueVisible">
-        </my-dialogue>       
-        <div class="app__btns">
-            <my-button 
-                @click="fetchBeer"
-            >
-                Pick a random beer
-            </my-button>
-            <my-input
-                v-model="searchQuery"                
-                placeholder="Поиск по названию..."
-            />
-            <my-select
-                v-model="selectedSort"
-                :options="sortOptions"
-            />
+    <div class="moes-bar wrapper">
+        <my-loader v-if="isUserLoading"/>
+        <div class="main-section container container-fluid">           
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="card text-center bartender mb-3">
+                        <img src="@/assets/images/Moe.webp" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">У меня кое что есть для тебя, {{ user.first_name }}</h5>                             
+                            <my-button 
+                                @click="fetchBeer(); showDialog();"                                
+                            >                    
+                                Выбрать другое пиво
+                            </my-button>
+                            <div class="loader"><my-loader v-if="isBeerLoading"/></div>
+                        </div>
+                    </div>
+               </div>
+               <div class="col mb-3">
+                <beer-item
+                    class="suggested-beer"
+                    :beer="beer"
+                    @remove="removeBeer"
+                    @toggle-flag="fetchBeer"
+                />
+               </div>
+               <div class="col mb-3">
+                <user-profile
+                    class="user"
+                    :user="user"
+                />
+               </div>
+            </div>
         </div>
-        <my-loader v-if="isBeerLoading">
-            <h4>Дай-ка подумать...</h4>
-        </my-loader>
-        <!-- <h2 v-if="!isUserOldEnough">Прости, несовершеннолетним пиво не предлагаем!</h2> -->
-        <beer-list 
-            :beers="sortedAndSearchedBeers"
-            @remove="removeBeer"
-        /> 
-  </div>
+        <div class="container-fluid" v-if="isDialogueVisible">
+            <my-dialogue v-model:show="isDialogueVisible">
+                <div class="alert alert-light mb-2 text-center" role="alert">
+                    Не нравится? Тогда попробуй это!
+                </div>
+                <beer-item
+                    :beer="beer"
+                    @remove="removeBeer"
+                    @toggle-flag="fetchBeer"
+                />
+            </my-dialogue>
+        </div>            
+    </div>
 </template>
 
 <script>
 import BeerList from "@/components/BeerList";
+import BeerItem from "@/components/BeerItem";
 import MyDialogue from "@/components/UI/MyDialogue";
 import MyButton from '@/components/UI/MyButton';
 import UserProfile from '@/components/UserProfile';
@@ -46,19 +62,15 @@ import useSortedBeers from '@/hooks/useSortedBeers';
 import useSortedAndSearchedBeers from '@/hooks/useSortedAndSearchedBeers'
 export default {
     components: {
-        BeerList, MyDialogue,
+        BeerList, MyDialogue, BeerItem,
         MyButton, UserProfile, MySelect, MyInput
     },
     data () {
         return {
-            dialogueVisible: false,
-            sortOptions: [
-                {value: 'brand', name: 'По бренду'},
-                {value: 'style', name: 'По виду'},
-            ]
+            isDialogueVisible: false,
         }
     },
-    setup (props) {
+    setup () {
         const { user, isUserLoading, fetchUser } = useUser();
         const { beer, beers, isBeerLoading, fetchBeer, removeBeer } = useBeer();
         const { selectedSort, sortedBeers } = useSortedBeers(beers);
@@ -78,23 +90,36 @@ export default {
             sortedBeers 
         }
     },
+    methods: {
+        showDialog () {
+            this.isDialogueVisible = true;
+        }
+    },
      mounted () {
         this.fetchUser();
     },
-
 }
 </script>
 
 <style scoped>
-    .app__btns {
-        margin: 15px 0;
-        display: flex;
-        justify-content: space-between;
-    } 
     .wrapper {
         max-width: 1440px;
-        min-height: 50px;
         margin: 0 auto;
         padding: 1.5rem;
+    }
+    .bartender {
+        border: none;
+        height: 100%;
+    }
+    .user {
+        height: 100%;
+    }
+    .beerlist-header {
+        text-align: center;
+        margin-top: 3rem;
+    }
+    .loader {
+        display: inline-block;
+        width: 1rem;
     }
 </style>

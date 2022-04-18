@@ -1,6 +1,5 @@
-import Main from '@/pages/Main';
 import About from '@/pages/About';
-import Bar from '@/pages/Bar';
+import Main from '@/pages/Main';
 import BarCompositionApi from '@/pages/BarCompositionApi';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -8,10 +7,6 @@ const routes = [
     { 
         path: '/',
         component: Main
-    },
-    { 
-        path: '/bar',
-        component: Bar
     },
     {
         path: '/composition',
