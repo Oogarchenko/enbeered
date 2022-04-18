@@ -1,6 +1,7 @@
 import Main from '@/pages/Main';
 import About from '@/pages/About';
 import Bar from '@/pages/Bar';
+import BarCompositionApi from '@/pages/BarCompositionApi';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
     { 
         path: '/bar',
         component: Bar
+    },
+    {
+        path: '/composition',
+        component: BarCompositionApi
     },
     { 
         path: '/about',

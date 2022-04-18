@@ -15,7 +15,8 @@
 <script>
 import BeerItem from '@/components/BeerItem';
 export default {
-  components: { BeerItem },
+    emits: ['remove'],
+    components: { BeerItem },
     props: { 
         beers: { 
             type: Array,

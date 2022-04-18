@@ -2,9 +2,10 @@
   <div class="nav">
       <div>MOE`s</div>
       <div class="nav__buttons">
-          <my-button @click="$router.push('/bar')">Что там в баре?</my-button>
-          <my-button @click="$router.push('/about')">Что это за бар?</my-button>
-      </div>
+            <my-button @click="$router.push('/bar')">Bar(store)</my-button>
+            <my-button @click="$router.push('/composition')">Bar(composition-api)</my-button>
+            <my-button @click="$router.push('/about')">Что это за бар?</my-button>
+    </div>
   </div>
 </template>
 

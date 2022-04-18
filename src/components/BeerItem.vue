@@ -36,6 +36,7 @@
 
 <script>
 export default {
+    emits: ['remove'],
     props: {
         beer: {
             type: Object,
