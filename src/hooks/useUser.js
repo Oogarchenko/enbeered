@@ -12,13 +12,13 @@ export default function useUser () {
             user.value = response.data;
             userAge.value = new Date().getFullYear() - new Date(user.value.date_of_birth).getFullYear();
         } catch (e) {
-            alert(e.message)
+            alert(e.message);
         } finally {
             isUserLoading.value = false;
-        }
+        };
     };
 
-    onMounted(fetchUser)
+    onMounted(fetchUser);
     return {
         user, isUserLoading, fetchUser, userAge
     }

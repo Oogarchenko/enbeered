@@ -1,7 +1,6 @@
 <template>
         <nav-bar/>
-    <div class="app">
-
+        <div class="app">
         <router-view></router-view>
     </div>
 </template>
@@ -13,15 +12,15 @@ export default {
     name: 'App',
     components: { NavBar },
     created () {
-    if (sessionStorage.getItem("store") ) {
-        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
+    if (sessionStorage.getItem("store")) {
+        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))));
     } 
-    window.addEventListener("beforeunload",()=>{
-        sessionStorage.setItem("store",JSON.stringify(this.$store.state))  // это вместо плагина для persisted store
-    })
+    window.addEventListener("beforeunload",() => {
+        sessionStorage.setItem("store",JSON.stringify(this.$store.state));  // это вместо плагина для persisted store
+    });
   }
 
-}
+};
 </script>
 
 <style>
@@ -35,5 +34,6 @@ export default {
         background: url('@/assets/images/bar-bg.webp') no-repeat fixed;
         background-size: auto;
         background-position: 30% 30%;
+        min-height: 100vh;
     }
 </style>

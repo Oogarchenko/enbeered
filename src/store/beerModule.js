@@ -14,10 +14,10 @@ export const beerModule = {
     }),
     getters: {
         sortedBeers (state) {
-            return [...state.beers].sort((beer1, beer2) => beer1[state.selectedSort]?.localeCompare(beer2[state.selectedSort]))
+            return [...state.beers].sort((beer1, beer2) => beer1[state.selectedSort]?.localeCompare(beer2[state.selectedSort]));
         },
         sortedAndSearchedBeers (state, getters) {
-            return getters.sortedBeers.filter(beer => beer.name.toLowerCase().includes(state.searchQuery.toLowerCase()))
+            return getters.sortedBeers.filter(beer => beer.name.toLowerCase().includes(state.searchQuery.toLowerCase()));
         },
     },
     mutations: {
@@ -45,7 +45,7 @@ export const beerModule = {
                 commit('setBeer', response.data);
                 commit('setBeers', [...state.beers, response.data]);
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             } finally {
                 commit('setLoading', false);
             }
@@ -56,4 +56,4 @@ export const beerModule = {
         },
     },
     namespaced: true,
-}
+};
